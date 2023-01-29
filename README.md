@@ -28,5 +28,6 @@ Fork the repository
 Create a branch with a descriptive name
 Commit your changes
 Create a pull request
+
 License
 This project is licensed under the MIT License.
