@@ -12,7 +12,7 @@ Usage
 Clone the repository
 bash
 Copy code
-git clone https://github.com/<username>/solona-data-prediction.git
+git clone https://github.com/AnamolZ/Solona-Data-Analysis.git
 Install required packages
 Copy code
 pip install -r requirements.txt
