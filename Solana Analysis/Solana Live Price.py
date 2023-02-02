@@ -1,33 +1,18 @@
+import requests
 
-# import requests
-# from bs4 import BeautifulSoup
-# url = "https://coinmarketcap.com/currencies/solana/"
+url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
+headers = {'Accepts': 'application/json', 'X-CMC_Pro_API_Key': 'e3763607-e592-4ba9-b6d5-3769d4a54290'}
+params = {'symbol': 'BTC', 'convert': 'USD'}
 
-# r = requests.get(url)
-# htmlContent = r.content
+data = requests.get(url, headers=headers, params=params).json()
+d = data['data'][list(data['data'].keys())[0]]
+quote = d['quote']['USD']
 
-# soup = BeautifulSoup(htmlContent, 'html.parser')
+symbol = d['symbol']
+price = "${:.2f}".format(quote['price'])
+volume = "${:,.2f}".format(quote['volume_24h'])
+change = "{:.2f}%".format(quote['volume_change_24h'])
+percent1h = "{:.2f}%".format(quote['percent_change_1h'])
+percent24h = "{:.2f}%".format(quote['percent_change_24h'])
 
-# print(soup.find('div', class_='sc-aef7b723-0 dDQUel priceTitle').get_text())
-
-
-import websocket
-import json
-
-def on_message(ws, message):
-    message = json.loads(message)
-    print(message)
-
-def on_error(ws, error):
-    print(f"Error: {error}")
-
-def on_close(ws):
-    print("Closed connection")
-
-if __name__ == "__main__":
-    ws = websocket.WebSocketApp("wss://ws.coincap.io/prices?assets=solana",
-                                 on_message=on_message,
-                                 on_error=on_error,
-                                 on_close=on_close)
-    ws.run_forever()
-
+print(f"\nSymbol: {symbol}\nPrice: {price}\n\n24_Hour\nTraded: {volume}\nChange: {change}\n\nPercent\n1 Hour: {percent1h}\n24 Hour: {percent24h}")
