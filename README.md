@@ -9,6 +9,8 @@ This project is aimed at developing a machine learning model for data prediction
 - pandas 
 - numpy 
 - matplotlib
+- websocket
+- json
 
 ## Usage
 1. Clone the repository:
